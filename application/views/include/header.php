@@ -24,14 +24,14 @@
                 <div>
                     <a href="<?= base_url(); ?>"><img src="<?= base_url('assets/images/') . 'logo.png'; ?>" class="logo"></a>
                 </div>
-
-                <?php if (isset($page)) : if ($page == 'home') : ?>
-                        <div>
-                            <a href="<?= base_url('Index/login'); ?>" class="btn btn-lg btn-warning position-relative fs-4"><span class="material-icons me-2">deck</span><span class=" fw-thick">BOOK NOW!</span></a>
-                        </div>
-                <?php endif;
-                endif; ?>
-            </div>
+    <?php if (isset($page)) :
+        if ($page == 'home') : ?>
+            <div>
+                    <a href="<?= base_url('Index/login'); ?>" class="btn btn-lg btn-warning position-relative fs-4"><span class="material-icons me-2">deck</span><span class=" fw-thick">BOOK NOW!</span></a>
+                </div>
+    <?php endif;
+        endif; ?>
+        </div>
         </header>
-
-        <div class="container-fluid row m-0 px-0 py-3"> <!-- Start of main content row -->
+        <!-- Start of main content row -->
+        <div class="container-fluid row m-0 px-0 py-3"> 

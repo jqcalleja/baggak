@@ -1,46 +1,63 @@
             
-            <!-- Carousel Section -->
+            <!-- Home page navigation section -->
+            <div>
+                <ul class="nav nav-tabs justify-content-center fs-5 fw-medium border-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="<?= base_url('Index'); ?>">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?= base_url('Index/about'); ?>">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?= base_url('Index/foods'); ?>">Foods</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?= base_url('Index/amenities'); ?>">Amenities</a>
+                    </li>
+                </ul>
+            </div>
+            
+            <!-- Carousel section -->
             <div id="home-carousel" class="carousel slide carousel-fade rounded-3 shadow w-75 bg-dark mx-auto mb-5 p-3" data-bs-ride="carousel">
                 <div class="carousel-inner">
-                    <?php
-                    $count = 1;
-                    foreach ($images as $image) :
-                        if ($count == 1) :
-                    ?>
-<div class="carousel-item active">
+<?php
+$count = 1;
+foreach ($images as $image) :
+    if ($count == 1) :
+?>
+                    <div class="carousel-item active">
     <?php else : ?>
-    <div class="carousel-item">
+                <div class="carousel-item">
     <?php endif; ?>
                     <img src="<?= base_url('assets/images/carousel/') . $image; ?>" class="d-block img-fluid rounded-3 m-auto" style="height: 600px" alt="<?= 'Carousel image' . $count++; ?>">
-                                </div>
-                            <?php endforeach; ?>
-                            </div>
-                            <button class="carousel-control-prev" type="button" data-bs-target="#home-carousel" data-bs-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Previous</span>
-                            </button>
-                            <button class="carousel-control-next" type="button" data-bs-target="#home-carousel" data-bs-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Next</span>
-                            </button>
-                </div>
+                    </div>
+    <?php endforeach; ?>
             </div>
-            <!-- End of Carousel Section -->
-            <!-- Mission and Vision Section -->
-            <div class="border-top border-5 rounded-5 border-dark mx-auto mb-5"></div>
-            <div class="container mt-3 px-5">
-
+                <button class="carousel-control-prev" type="button" data-bs-target="#home-carousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#home-carousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+            <!-- End of carousel section -->
+            
+            <!-- Mission and Vision section -->
+            <div class="container mt-3 px-5" id="mv">
                 <div class="row">
-                    <div class="d-flex justify-content-center align-items-center">
-                        <div class="col-md-4 m-2 p-5 boder rounded-5 text-bg-dark h-100">
+                    <div class="border-top border-5 rounded-5 border-dark mx-auto mb-5"></div>
+                    <div class="d-flex align-items-center justify-content-center">
+                        <div class="col-md-4 m-2 p-5 border rounded-5 text-bg-dark h-100">
                             <h2 class="fs-1 text-center">Mission</h2>
                             <p class="fs-3">To provide sustainable quality, affordable and accessible products and services thereby satisfying every client’s expectation.</p>
                         </div>
-                        <div class="col-md-4 m-2 p-5 boder rounded-5 text-bg-dark h-100">
+                        <div class="col-md-4 m-2 p-5 border rounded-5 text-bg-dark h-100">
                             <h2 class="fs-1 text-center">Vision</h2>
                             <p class="fs-3">A recognized destination for quality products and services with utmost professionalism in the tourism industry.</p>
                         </div>
-                        <div class="col-md-4 m-2 p-5 boder rounded-5 text-bg-dark h-100">
+                        <div class="col-md-4 m-2 p-5 border rounded-5 text-bg-dark h-100">
                             <h2 class="fs-1 text-center">Core Values</h2>
                             <ul class="fs-3">
                                 <li>Commitment</li>
@@ -52,13 +69,11 @@
                             </ul>
                         </div>
                     </div>
+                    <div class="border-top border-5 rounded-5 border-dark w-80 mx-auto my-5"></div>
                 </div>
             </div>
-
-            <!-- Contact Section -->
-            <div class="container mt-5 px-5 m-auto text-center">
-                <div class="border-top border-5 rounded-5 border-dark w-80 mx-auto mb-4"></div>
+            <!-- Contact section -->
+            <div class="container px-5 m-auto text-center">
                 <h2>Contact Us for Inquiries</h2>
                 <p>Contact: 012393214 | eMail: asd@asd.com</p>
-
             </div>

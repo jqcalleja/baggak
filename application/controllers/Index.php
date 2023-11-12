@@ -34,7 +34,7 @@ class Index extends CI_Controller
 
     public function index()
     {
-        $data['title']  = "Baggak Resort Resarvation System";
+        $data['title']  = "Baggak Resort Reservation System";
         $data['page']   = 'home';
         $data['images'] = $this->get_images();
         $this->load->view('include/header', $data);
@@ -45,7 +45,7 @@ class Index extends CI_Controller
     public function login()
     {
         $data = array(
-            'title' => "Baggak Resort Resarvation System - Login",
+            'title' => "Baggak Resort Reservation System - Login",
             'page' => 'login'
         );
 
@@ -76,7 +76,7 @@ class Index extends CI_Controller
                 'Home' => '#',
                 'Transaction' => '#'
             ),
-            'title' => "Baggak Resort Resarvation System - Dashboard"
+            'title' => "Baggak Resort Reservation System - Dashboard"
         );
 
         $this->load->view('include/header', $data);
@@ -94,7 +94,7 @@ class Index extends CI_Controller
     public function register()
     {
         $data = array(
-            'title' => "Baggak Resort Resarvation System - Registration"
+            'title' => "Baggak Resort Reservation System - Registration"
         );
 
         $this->load->view('include/header', $data);

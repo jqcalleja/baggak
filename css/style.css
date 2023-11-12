@@ -1,9 +1,12 @@
 .logo {
-    height: 50px;
+    height: 60px;
 }
 .body-bg{
-    opacity: 0.2;
+    opacity: 0.15;
     width: 100%;
     height: 100vh;
     z-index: -1
+}
+#mv{
+    width: 90%;
 }

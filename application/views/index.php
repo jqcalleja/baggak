@@ -46,9 +46,9 @@ foreach ($images as $image) :
             
             <!-- Mission and Vision section -->
             <div class="container mt-3 px-5" id="mv">
-                <div class="row">
+                <div class="row h-100">
                     <div class="border-top border-5 rounded-5 border-dark mx-auto mb-5"></div>
-                    <div class="d-flex align-items-center justify-content-center">
+                    <div class="d-flex align-items-center justify-content-center mx-auto" style="width: 90%;">
                         <div class="col-md-4 m-2 p-5 border rounded-5 text-bg-dark h-100">
                             <h2 class="fs-1 text-center">Mission</h2>
                             <p class="fs-3">To provide sustainable quality, affordable and accessible products and services thereby satisfying every client’s expectation.</p>

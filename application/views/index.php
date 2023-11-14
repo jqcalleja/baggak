@@ -2,23 +2,23 @@
             <!-- Home page navigation section -->
             <div>
                 <ul class="nav nav-tabs justify-content-center fs-5 fw-medium border-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="<?= base_url('Index'); ?>">Home</a>
+                    <li class="nav-item  border rounded-2 me-1 shadow-sm">
+                        <a class="nav-link active" aria-current="page" href="<?= base_url('Index'); ?>"><span class="material-icons me-2">home</span>Home</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="<?= base_url('Index/about'); ?>">About Us</a>
+                    <li class="nav-item border rounded-2 me-1 shadow-sm">
+                        <a class="nav-link" href="<?= base_url('Index/about'); ?>"><span class="material-icons me-2">info</span>About Us</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="<?= base_url('Index/foods'); ?>">Foods</a>
+                    <li class="nav-item border rounded-2 me-1 shadow-sm">
+                        <a class="nav-link" href="<?= base_url('Index/foods'); ?>"><span class="material-icons me-2">restaurant</span>Foods</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="<?= base_url('Index/amenities'); ?>">Amenities</a>
+                    <li class="nav-item border rounded-2 me-1 shadow-sm">
+                        <a class="nav-link" href="<?= base_url('Index/amenities'); ?>"><span class="material-icons me-2">beach_access</span>Amenities</a>
                     </li>
                 </ul>
             </div>
             
             <!-- Carousel section -->
-            <div id="home-carousel" class="carousel slide carousel-fade rounded-3 shadow w-75 bg-dark mx-auto mb-5 p-3" data-bs-ride="carousel">
+            <div id="home-carousel" class="carousel slide carousel-fade rounded-3 shadow w-75 bg-dark mx-auto p-3" data-bs-ride="carousel">
                 <div class="carousel-inner">
 <?php
 $count = 1;
@@ -45,10 +45,10 @@ foreach ($images as $image) :
             <!-- End of carousel section -->
             
             <!-- Mission and Vision section -->
-            <div class="container mt-3 px-5" id="mv">
+            <div class="container my-5 px-5" id="mv">
                 <div class="row h-100">
-                    <div class="border-top border-5 rounded-5 border-dark mx-auto mb-5"></div>
-                    <div class="d-flex align-items-center justify-content-center mx-auto" style="width: 90%;">
+                    <div class="border-top border-5 rounded-5 border-dark mx-auto"></div>
+                    <div class="d-flex align-items-center justify-content-center mx-auto my-5" style="width: 90%;">
                         <div class="col-md-4 m-2 p-5 border rounded-5 text-bg-dark h-100">
                             <h2 class="fs-1 text-center">Mission</h2>
                             <p class="fs-3">To provide sustainable quality, affordable and accessible products and services thereby satisfying every client’s expectation.</p>
@@ -69,7 +69,7 @@ foreach ($images as $image) :
                             </ul>
                         </div>
                     </div>
-                    <div class="border-top border-5 rounded-5 border-dark w-80 mx-auto my-5"></div>
+                    <div class="border-top border-5 rounded-5 border-dark w-80 mx-auto"></div>
                 </div>
             </div>
             <!-- Contact section -->

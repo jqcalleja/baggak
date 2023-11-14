@@ -27,7 +27,7 @@
     <?php if (isset($page)) :
         if ($page == 'home') : ?>
             <div>
-                    <a href="<?= base_url('Index/login'); ?>" class="btn btn-lg btn-warning position-relative fs-4"><span class="material-icons me-2">deck</span><span class=" fw-thick">BOOK NOW!</span></a>
+                    <a href="<?= base_url('Client/login'); ?>" class="btn btn-lg btn-warning position-relative fs-4"><span class="material-icons me-2">deck</span><span class=" fw-thick">BOOK NOW!</span></a>
                 </div>
     <?php endif;
         endif; ?>

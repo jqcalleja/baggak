@@ -2,7 +2,7 @@
         <div class="row justify-content-center">
             <div class="col-md-4 px-5 py-3 bg-light border rounded-5 shadow">
                 <h2 class="text-center">Login</h2>
-                <form action="<?= base_url('Index/login_user'); ?>" method="post">
+                <form action="<?= base_url('Client/login_user'); ?>" method="post">
                     <?php if ($this->session->userdata('error') != null) : ?>
                         <div class="alert alert-danger">
                             <?= $this->session->userdata('error'); ?>
@@ -24,7 +24,7 @@
 
                     <button type="submit" class="btn btn-primary">Login</button>
                 </form>
-                <p class="mt-3">Don't have an account? <a href="<?= base_url('Index/register'); ?>">Register here</a></p>
+                <p class="mt-3">Don't have an account? <a href="<?= base_url('Client/register'); ?>">Register here</a></p>
             </div>
         </div>
     </div>

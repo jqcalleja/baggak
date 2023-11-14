@@ -6,20 +6,18 @@ class Staff_model extends CI_Model
         parent::__construct();
     }
 
-    public function login_user($email, $password)
+    public function login_user($email)
     {
         $this->load->database();
-
-        $this->db->select('*');
-        $this->db->from('staff');
         $this->db->where('email', $email);
-        $this->db->where('password', $password);
+        return $this->db->get('staff')->row_array();
+    }
 
-        if ($query = $this->db->get()) {
-            return $query->row_array();
-        } else {
-            return false;
-        }
+    public function dd($data){
+        echo "<pre>";
+        print_r($data);
+        echo "</pre>";
+        die();
     }
 }
 ?>

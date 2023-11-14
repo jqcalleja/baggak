@@ -20,11 +20,16 @@
     <img src="<?= base_url('assets/images/').'bg.jpg'; ?>" class="body-bg position-fixed" id="bg-body">
     <div class="d-flex flex-column justify-content-between min-vh-100">
         <header class="container-fluid text-bg-primary p-3">
-            <div class="container-fluid d-flex justify-content-between">
+            <div class="container-fluid d-flex justify-content-between h-100">
                 <div>
                     <a href="<?= base_url(); ?>"><img src="<?= base_url('assets/images/') . 'logo.png'; ?>" class="logo"></a>
                 </div>
+<?php if($this->session->userdata('user_id') != null): ?>
+                <div class="my-auto">
+                    <?= $this->session->userdata('fname'); ?>
+                </div>
+<?php endif; ?>
             </div>
         </header>
-
-        <div class="container-fluid row m-0 px-0 py-3"> <!-- Start of main content row -->
+        <!-- Start of main content row -->
+        <div class="container-fluid row m-0 px-0 py-3"> 

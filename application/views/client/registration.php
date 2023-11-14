@@ -50,6 +50,6 @@
             </div>
             <button type="submit" class="btn btn-primary">Register</button>
         </form>
-        <p class="mt-3">Already have an account? <a href="<?= base_url('Index/login'); ?>">Login here</a></p>
+        <p class="mt-3">Already have an account? <a href="<?= base_url('Client/login'); ?>">Login here</a></p>
     </div>
 </div>

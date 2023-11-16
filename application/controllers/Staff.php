@@ -46,8 +46,8 @@ class Staff extends CI_Controller
         $user = $this->staff->login_user($email);
         if ($user) {
             if(password_verify($password, $user['password'])){
-                $this->session->set_userdata('user_id', $user['staff_id']);
-                $this->session->set_userdata('fname', $user['first_name'] . ' ' . $user['last_name']);
+                $this->session->set_userdata('user_id', $user['staffid']);
+                $this->session->set_userdata('fname', $user['firstname'] . ' ' . $user['lastname']);
                 $this->session->set_userdata('role', $user['role']);
                 redirect(base_url('Staff'));
             } else {
@@ -72,6 +72,40 @@ class Staff extends CI_Controller
 
         $this->load->view('include/header_admin', $data);
         $this->load->view('staff/staff_registration', $data);
+        $this->load->view('include/footer');
+    }
+
+    public function myprofile(){
+        $this->load->model('Staff_model', 'staff');
+        $data = array(
+            'title' => "Baggak Resort Resarvation System - My Profile",
+            'profile' => $this->staff->get_user($this->session->userdata('user_id'))
+        );
+
+        $this->load->view('include/header_admin', $data);
+        if($this->session->userdata('role') == '1'):
+            $this->load->view('include/nav_admin');
+        else:
+            $this->load->view('include/nav_staff');
+        endif;
+        $this->load->view('staff/view_profile', $data);
+        $this->load->view('include/footer');
+    }
+
+    public function editprofile(){
+        $this->load->model('Staff_model', 'staff');
+        $data = array(
+            'title' => "Baggak Resort Resarvation System - Edit Profile",
+            'profile' => $this->staff->get_user($this->session->userdata('user_id'))
+        );
+
+        $this->load->view('include/header_admin', $data);
+        if($this->session->userdata('role') == '1'):
+            $this->load->view('include/nav_admin');
+        else:
+            $this->load->view('include/nav_staff');
+        endif;
+        $this->load->view('staff/edit_profile', $data);
         $this->load->view('include/footer');
     }
 

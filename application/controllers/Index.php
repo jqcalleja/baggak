@@ -9,6 +9,7 @@ class Index extends CI_Controller
         $this->load->helper('url');
     }
 
+    // Get all images from the carousel folder
     public function get_images()
     {
         $directory = FCPATH . 'assets\\images\\carousel\\';
@@ -19,7 +20,7 @@ class Index extends CI_Controller
 
             foreach ($files as $file) {
                 $filePath = $directory . $file;
-                // Check if the file is a regular file and an image
+                // Check if the file exists and if it is an image file
                 if (is_file($filePath) && in_array(pathinfo($file, PATHINFO_EXTENSION), array('jpg', 'jpeg', 'png', 'gif'))) {
                     $imageFiles[] = $file;
                 }

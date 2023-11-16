@@ -20,13 +20,14 @@
     <img src="<?= base_url('assets/images/').'bg.jpg'; ?>" class="body-bg position-fixed" id="bg-body">
     <div class="d-flex flex-column justify-content-between min-vh-100">
         <header class="container-fluid text-bg-primary p-3">
-            <div class="container-fluid d-flex justify-content-between h-100">
+            <div class="d-flex align-items-center justify-content-between mx-3">
                 <div>
-                    <a href="<?= base_url(); ?>"><img src="<?= base_url('assets/images/') . 'logo.png'; ?>" class="logo"></a>
+                    <a href="<?= base_url('Staff'); ?>" class="text-decoration-none"><img src="<?= base_url('assets/images/') . 'logo.png'; ?>" class="logo">
+                    <span class="text-light fs-3 fw-bold ms-3">Baggak Resort</span></a>
                 </div>
 <?php if($this->session->userdata('user_id') != null): ?>
                 <div class="my-auto">
-                    <?= $this->session->userdata('fname'); ?>
+                    <span class="fs-4"><?= $this->session->userdata('fname'); ?></span>
                 </div>
 <?php endif; ?>
             </div>

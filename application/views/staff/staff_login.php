@@ -1,7 +1,7 @@
     
     <div class="container mt-5">
         <div class="row justify-content-center">
-            <div class="col-md-4 px-5 py-3 bg-light border rounded-5 shadow">
+            <div class="col-md-4 px-5 py-5 bg-light border rounded-5 shadow">
                 <h2 class="text-center">Login</h2>
                 <div class="border-top border-5 rounded-5 border-dark mx-auto my-3"></div>
                 <form action="<?= base_url('Staff/login_user'); ?>" method="post">

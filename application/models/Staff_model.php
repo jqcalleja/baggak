@@ -13,6 +13,13 @@ class Staff_model extends CI_Model
         return $this->db->get('staff')->row_array();
     }
 
+    public function get_user($id)
+    {
+        $this->load->database();
+        $this->db->where('staffid', $id);
+        return $this->db->get('staff')->row_array();
+    }
+
     public function dd($data){
         echo "<pre>";
         print_r($data);

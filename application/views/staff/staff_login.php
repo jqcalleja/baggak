@@ -5,11 +5,16 @@
                 <h2 class="text-center">Login</h2>
                 <div class="border-top border-5 rounded-5 border-dark mx-auto my-3"></div>
                 <form action="<?= base_url('Staff/login_user'); ?>" method="post">
-                    <?php if ($this->session->userdata('error') != null) : ?>
+<?php if ($this->session->userdata('error') != null) : ?>
                         <div class="alert alert-danger">
                             <?= $this->session->userdata('error'); ?>
                         </div>
-                    <?php endif; ?>
+<?php endif; ?>
+<?php if ($this->session->userdata('warning') != null) : ?>
+                        <div class="alert alert-warning">
+                            <?= $this->session->userdata('warning'); ?>
+                        </div>
+<?php endif; ?>
                     <div class="col-12 col-lg">
                         <div class="form-floating mb-3">
                             <input type="email" class="form-control" id="email" name="email" placeholder="email" required>

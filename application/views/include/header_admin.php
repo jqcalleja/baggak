@@ -25,7 +25,7 @@
                     <a href="<?= base_url('Staff'); ?>" class="text-decoration-none"><img src="<?= base_url('assets/images/') . 'logo.png'; ?>" class="logo">
                     <span class="text-light fs-3 fw-bold ms-3">Baggak Resort</span></a>
                 </div>
-<?php if($this->session->userdata('user_id') != null): ?>
+<?php if($this->session->userdata('userid') != null): ?>
                 <div class="my-auto">
                     <span class="fs-4"><?= $this->session->userdata('fname'); ?></span>
                 </div>

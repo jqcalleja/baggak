@@ -1,13 +1,8 @@
             <div class="col-md bg-light overflow-y-auto mx-2 vh-100">
                 <div class="row justify-content-center">
-                    <div class="col-md-9 m-5 px-5 py-5 bg-light border rounded-5 shadow">
-                        <h2 class="text-center">My User Profile</h2>
+                    <div class="col-md-9 m-5 px-5 py-5">
+                        <h2 class="text-center">Viewing User Account</h2>
                         <div class="border-top border-5 rounded-5 border-dark mx-auto my-4"></div>
-                        <?php if ($this->session->userdata('success') != null) : ?>
-                            <div class="alert alert-success">
-                                <?= $this->session->userdata('success'); ?>
-                            </div>
-                        <?php endif; ?>
                         <div role="form">
                             <div class="row justify-content-between">
                                 <div class="col-md-2">
@@ -79,10 +74,7 @@
                             </div>
                             <div class="row justify-content-center">
                                 <div class="col-md-3">
-                                    <a href="<?= base_url('Staff/editprofile'); ?>" class="btn btn-lg btn-success w-100"><i class="bi bi-pencil-square me-2"></i>Edit Profile</a>
-                                </div>
-                                <div class="col-md-3">
-                                    <a href="<?= base_url('Staff'); ?>" class="btn btn-lg btn-danger w-100"><i class="bi bi-x-square me-2"></i>Close</a>
+                                    <a href="<?= base_url('Staff/users'); ?>" class="btn btn-lg btn-danger w-100"><i class="bi bi-x-square me-2"></i>Close</a>
                                 </div>
                             </div>
                         </div>

@@ -8,6 +8,11 @@
                     <?= $this->session->userdata('error'); ?>
                 </div>
             <?php endif; ?>
+            <?php if ($this->session->userdata('success') != null) : ?>
+                <div class="alert alert-success">
+                    <?= $this->session->userdata('success'); ?>
+                </div>
+            <?php endif; ?>
             <form action="<?= base_url('Staff/add_user'); ?>" method="post" novalidate>
                 <div class="row justify-content-between">
                     <div class="col-md-2">
@@ -90,7 +95,13 @@
                         </button>
                     </div>
                     <div class="col-md-3">
+<?php if ($this->session->userdata('fromusers') == '1') : ?>
                         <a href="<?= base_url('Staff/users'); ?>" class="btn btn-lg btn-danger w-100"><i class="bi bi-x-square me-2"></i>Cancel</a>
+<?php 
+else :
+?>
+                        <a href="<?= base_url('Staff'); ?>" class="btn btn-lg btn-danger w-100"><i class="bi bi-x-square me-2"></i>Cancel</a>
+<?php endif; ?>
                     </div>
                 </div>
 

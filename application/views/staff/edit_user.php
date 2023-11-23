@@ -9,6 +9,7 @@
                 </div>
             <?php endif; ?>
             <form action="<?= base_url('Staff/update_user'); ?>" method="post" novalidate>
+                <input type="hidden" name="id" value="<?= $profile['staffid']; ?>">
                 <div class="row justify-content-between">
                     <div class="col-md-2">
                         <div class="form-floating mb-3">

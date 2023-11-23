@@ -13,10 +13,30 @@ class Staff_model extends CI_Model
         return $this->db->get('staff')->row_array();
     }
 
-    public function get_users()
+    public function get_users($limit = 15, $offset = 0, $search = '')
     {
         $this->load->database();
+        // Check if search is empty
+        if ($search != '') {
+            $this->db->like('firstname', $search);
+            $this->db->or_like('lastname', $search);
+        }
+        $this->db->limit($limit, $offset);
+        $this->db->order_by('status', 'DESC');
+        $this->db->order_by('lastname');
+        $this->db->order_by('firstname');
         return $this->db->get('staff')->result_array();
+    }
+
+    public function get_users_count($search = '')
+    {
+        $this->load->database();
+        // Check if search is empty
+        if ($search != '') {
+            $this->db->like('firstname', $search);
+            $this->db->or_like('lastname', $search);
+        }
+        return $this->db->count_all_results('staff');
     }
 
     public function get_user($id)

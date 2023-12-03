@@ -17,22 +17,21 @@
 </head>
 
 <body>
-    <img src="<?= base_url('assets/images/') . 'bg.jpg'; ?>" class="body-bg position-fixed" id="bg-body">
+    <img src="<?= base_url('assets/images/').'bg.jpg'; ?>" class="body-bg position-fixed" id="bg-body">
     <div class="d-flex flex-column justify-content-between min-vh-100">
-        <header class="container-fluid text-bg-success p-3">
-            <div class="container-fluid d-flex justify-content-between">
+        <header class="container-fluid text-bg-primary p-3">
+            <div class="d-flex align-items-center justify-content-between mx-3">
                 <div>
-                    <a href="<?= base_url(); ?>" class="text-decoration-none"><img src="<?= base_url('assets/images/') . 'logo.png'; ?>" class="logo">
-                    <span class="text-light fs-3 fw-bold ms-3">Baggak Resort</span></a>
+                    <img src="<?= base_url('assets/images/') . 'logo.png'; ?>" class="logo">
+                    <span class="text-light fs-3 fw-bold ms-3">Baggak Resort</span>
                 </div>
-<?php if (isset($page)) :
-if ($page == 'home') : ?>
-                <div>
-                    <a href="<?= base_url('Customer/login'); ?>" class="btn btn-lg btn-warning position-relative fs-4"><span class="material-icons me-2">deck</span><span class=" fw-thick">BOOK NOW!</span></a>
-                </div>
-<?php endif;
-endif; ?>
             </div>
         </header>
         <!-- Start of main content row -->
         <div class="container-fluid row m-0 px-0 py-3"> 
+            <!-- Image viewer -->
+            <div class="col-md">
+                <div class="text-center">
+                    <img src="<?= base_url('assets/images/amenities/'.$image); ?>" alt="Amenity Image" class="img-fluid" id="image-preview" style="width: 50%">
+                </div>
+            </div>

@@ -5,6 +5,14 @@ class Staff extends CI_Controller
     {
         parent::__construct();
 
+        // Set default time zone used by date functions
+        date_default_timezone_set('Asia/Manila');
+
+        // Set the default time zone used in the database
+        $this->load->database();
+        $this->db->query("SET time_zone='+08:00'");
+        $this->db->close();
+
         $this->load->library(array('session', 'form_validation', 'pagination'));
         $this->load->helper('url');
     }
@@ -53,7 +61,7 @@ class Staff extends CI_Controller
                 $this->session->set_userdata('userid', $user['staffid']);
                 $this->session->set_userdata('fname', $user['firstname'] . ' ' . $user['lastname']);
                 $this->session->set_userdata('role', $user['role']);
-                
+
                 // Add entry to audit log
                 $this->load->model('AuditLog_model', 'audit');
                 $data = array(
@@ -116,11 +124,7 @@ class Staff extends CI_Controller
         }
 
         $this->load->view('include/header_staff', $data);
-        if ($this->session->userdata('role') == '1') :
-            $this->load->view('include/nav_admin');
-        else :
-            $this->load->view('include/nav_staff');
-        endif;
+        $this->load->view('include/nav_staff');
         $this->load->view('staff/view_profile', $data);
         $this->load->view('include/footer');
     }
@@ -171,11 +175,7 @@ class Staff extends CI_Controller
 
         $this->session->set_userdata('fromusers', '1');
         $this->load->view('include/header_staff', $data);
-        if ($this->session->userdata('role') == '1') :
-            $this->load->view('include/nav_admin');
-        else :
-            $this->load->view('include/nav_staff');
-        endif;
+        $this->load->view('include/nav_staff');
         $this->load->view('staff/users', $data);
         $this->load->view('include/footer');
     }
@@ -189,11 +189,7 @@ class Staff extends CI_Controller
         );
 
         $this->load->view('include/header_staff', $data);
-        if ($this->session->userdata('role') == '1') :
-            $this->load->view('include/nav_admin');
-        else :
-            $this->load->view('include/nav_staff');
-        endif;
+        $this->load->view('include/nav_staff');
         $this->load->view('staff/view_user', $data);
         $this->load->view('include/footer');
     }
@@ -208,11 +204,7 @@ class Staff extends CI_Controller
 
         $this->session->set_userdata('email', $data['profile']['email']);
         $this->load->view('include/header_staff', $data);
-        if ($this->session->userdata('role') == '1') :
-            $this->load->view('include/nav_admin');
-        else :
-            $this->load->view('include/nav_staff');
-        endif;
+        $this->load->view('include/nav_staff');
         $this->load->view('staff/edit_profile', $data);
         $this->load->view('include/footer');
     }
@@ -308,11 +300,7 @@ class Staff extends CI_Controller
 
         $this->session->set_userdata('email', $data['profile']['email']);
         $this->load->view('include/header_staff', $data);
-        if ($this->session->userdata('role') == '1') :
-            $this->load->view('include/nav_admin');
-        else :
-            $this->load->view('include/nav_staff');
-        endif;
+        $this->load->view('include/nav_staff');
         $this->load->view('staff/edit_user', $data);
         $this->load->view('include/footer');
     }
@@ -403,11 +391,7 @@ class Staff extends CI_Controller
         );
 
         $this->load->view('include/header_staff', $data);
-        if ($this->session->userdata('role') == '1') :
-            $this->load->view('include/nav_admin');
-        else :
-            $this->load->view('include/nav_staff');
-        endif;
+        $this->load->view('include/nav_staff');
         $this->load->view('staff/add_user', $data);
         $this->load->view('include/footer');
     }

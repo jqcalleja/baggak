@@ -5,6 +5,14 @@ class Index extends CI_Controller
     {
         parent::__construct();
 
+        // Set default time zone used by date functions
+        date_default_timezone_set('Asia/Manila');
+
+        // Set the default time zone used in the database
+        $this->load->database();
+        $this->db->query("SET time_zone='+08:00'");
+        $this->db->close();
+
         $this->load->library('session');
         $this->load->helper('url');
     }

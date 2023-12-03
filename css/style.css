@@ -1,23 +1,31 @@
 .logo {
     height: 60px;
 }
-.body-bg{
+
+.body-bg {
     opacity: 0.15;
     width: 100%;
     height: 100vh;
     z-index: -1
 }
-#mv, .about{
+
+#mv,
+.about {
     width: 90%;
 }
 
 @media print {
-    body * {
+
+
+    html body * {
         visibility: hidden;
     }
-    .print, .print * {
+
+    .print,
+    .print * {
         visibility: visible;
     }
+
     .print {
         /* Center the printable content*/
         position: absolute;

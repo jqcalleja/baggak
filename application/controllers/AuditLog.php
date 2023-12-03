@@ -4,9 +4,22 @@ class AuditLog extends CI_Controller {
         parent::__construct();
 
         $this->load->helper('url_helper');
-        $this->load->library(array('session', 'pagination'));
+        $this->load->library(array('session', 'pagination', 'form_validation'));
+
+        // Set default time zone used by date functions
+        date_default_timezone_set('Asia/Manila');
+
+        // Set the default time zone used in the database
+        $this->load->database();
+        $this->db->query("SET time_zone='+08:00'");
+        $this->db->close();
     }
     public function index() {
+        // Check if user is logged in
+        if ($this->session->userdata('userid') == null) {
+            redirect('Staff/login');
+        }
+
         $this->load->model('AuditLog_model', 'audit');
 
         $search = '';
@@ -14,10 +27,19 @@ class AuditLog extends CI_Controller {
             $search = $this->input->get('search');
         }
 
+        // Set date range, default is 7 days before current date
+        if($this->input->get('from') != null && $this->input->get('to') != null) {
+            $from = $this->input->get('from');
+            $to = $this->input->get('to');
+        } else {
+            $from = date('Y-m-d', strtotime('-7 days'));
+            $to = date('Y-m-d');
+        }
+
         // Set pagination
         $config['base_url'] = base_url('AuditLog/index');
-        $config['total_rows'] = $this->audit->get_audit_count($search);
-        $config['per_page'] = 25;
+        $config['total_rows'] = $this->audit->get_audit_count($search, $from, $to);
+        $config['per_page'] = 15;
         $config['uri_segment'] = 3;
         $config['attributes'] = array('class' => 'page-link');
         $config['reuse_query_string'] = TRUE;
@@ -45,8 +67,11 @@ class AuditLog extends CI_Controller {
         
         $data = array(
             'title' => 'Baggak Resort Resarvation System - Audit Log',
-            'auditlog' => $this->audit->get_auditlog($config['per_page'], $page, $search),
-            'links' => $this->pagination->create_links()
+            'auditlog' => $this->audit->get_auditlog($config['per_page'], $page, $search, $from, $to),
+            'print' => $this->audit->for_print($search, $from, $to),
+            'links' => $this->pagination->create_links(),
+            'from' => $from,
+            'to' => $to,
         );
         $this->load->view('include/header_staff', $data);
         $this->load->view('include/nav_staff');
@@ -63,7 +88,5 @@ class AuditLog extends CI_Controller {
         $this->load->view('staff/auditlog', $data);
         $this->load->view('include/footer');
     }
-
-    
 }
 ?>

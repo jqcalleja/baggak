@@ -1,5 +1,5 @@
 <?php
-class Client extends CI_Controller
+class customer extends CI_Controller
 {
     public function __construct()
     {
@@ -7,6 +7,15 @@ class Client extends CI_Controller
 
         $this->load->library(array('session', 'form_validation'));
         $this->load->helper('url');
+    }
+
+    public function index()
+    {
+        if($this->session->userdata('user_id') != null){
+            redirect(base_url('Customer/dashboard'));
+        }else{
+            $this->login();
+        }
     }
 
     public function login()
@@ -17,30 +26,30 @@ class Client extends CI_Controller
         );
 
         $this->load->view('include/header', $data);
-        $this->load->view('client/login', $data);
+        $this->load->view('customer/login', $data);
         $this->load->view('include/footer');
     }
 
     public function login_user()
     {
-        $this->load->model('Client_model', 'client');
+        $this->load->model('Customer_model', 'customer');
         $email = $this->input->post('email');
         $password = $this->input->post('password');
-        $user = $this->client->login_user($email, $password);
+        $user = $this->customer->login_user($email, $password);
 
         if ($user) {
             $this->session->set_userdata('user_id', $user['customer_id']);
-            redirect(base_url('Client/dashboard'));
+            redirect(base_url('Customer/dashboard'));
         } else {
             $this->session->set_flashdata('error', 'Invalid email or password');
-            redirect(base_url('Client/login'));
+            redirect(base_url('Customer/login'));
         }
     }
 
     public function logout()
     {
-        $this->session->session_destroy();
-        redirect(base_url('Client'));
+        $this->session->sess_destroy();
+        redirect(base_url('Customer'));
     }
 
     public function dashboard()
@@ -54,8 +63,8 @@ class Client extends CI_Controller
         );
 
         $this->load->view('include/header', $data);
-        $this->load->view('include/nav_costumer');
-        $this->load->view('client/client_dashboard', $data);
+        $this->load->view('include/nav_customer');
+        $this->load->view('customer/customer_dashboard', $data);
         $this->load->view('include/footer');
     }
 
@@ -66,7 +75,7 @@ class Client extends CI_Controller
         );
 
         $this->load->view('include/header', $data);
-        $this->load->view('client/registration', $data);
+        $this->load->view('customer/registration', $data);
         $this->load->view('include/footer');
     }
 

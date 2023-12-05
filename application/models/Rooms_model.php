@@ -1,14 +1,10 @@
 <?php
-class Amenities_model extends CI_Model
-{
-    // FIELDS: name, description, image, type, status
-    public function __construct()
-    {
+class Rooms_model extends CI_Model {
+    public function __construct() {
         parent::__construct();
     }
-    
-    public function get_amenities($limit = null, $start = null, $search = null)
-    {
+
+    public function get_rooms($limit, $start, $search) {
         $this->load->database();
 
         if($search != null){
@@ -20,11 +16,11 @@ class Amenities_model extends CI_Model
         }
         $this->db->order_by('status', 'DESC');
         $this->db->order_by('name', 'ASC');
-        $query = $this->db->get('amenities');
+        $query = $this->db->get('rooms');
         return $query->result_array();
     }
 
-    public function get_amenities_count($search = null) 
+    public function get_rooms_count($search = null)
     {
         $this->load->database();
 
@@ -35,33 +31,32 @@ class Amenities_model extends CI_Model
         return $query->num_rows();
     }
 
-    public function add_amenity($data)
+    public function add_room($data)
     {
         $this->load->database();
-        $this->db->insert('amenities', $data);
+        $this->db->insert('rooms', $data);
     }
 
-    public function get_amenity($id)
+    public function get_room($id)
     {
         $this->load->database();
         $this->db->where('id', $id);
-        $query = $this->db->get('amenities');
+        $query = $this->db->get('rooms');
         return $query->row_array();
     }
 
-    public function update_amenity($id, $data)
+    public function update_room($id, $data)
     {
         $this->load->database();
         $this->db->where('id', $id);
-        $this->db->update('amenities', $data);
+        $this->db->update('rooms', $data);
     }
 
-    public function get_amenities_Index()
+    public function get_rooms_Index()
     {
         $this->load->database();
-        $this->db->where('status', '1');
-        $this->db->order_by('name', 'ASC');
-        $query = $this->db->get('amenities');
+        $this->db->where('status', 1);
+        $query = $this->db->get('rooms');
         return $query->result_array();
     }
 }

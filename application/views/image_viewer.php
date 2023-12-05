@@ -32,6 +32,6 @@
             <!-- Image viewer -->
             <div class="col-md">
                 <div class="text-center">
-                    <img src="<?= base_url('assets/images/amenities/'.$image); ?>" alt="Amenity Image" class="img-fluid" id="image-preview" style="width: 50%">
+                    <img src="<?= $image; ?>" alt="<?= $alt; ?>" class="img-fluid" id="image-preview" style="width: 50%">
                 </div>
             </div>

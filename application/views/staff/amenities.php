@@ -13,7 +13,7 @@
                                 <div class="d-flex justify-content-between">
 <?php if($this->session->userdata('role') == 1): ?>
                                     <div class="col-md-3">
-                                        <a href="<?= base_url('Amenities/addamenity');?>" class="btn btn-primary mb-3"><i class="bi bi-building-add me-2"></i>Add New Amenity</a>
+                                        <a href="<?= base_url('Amenities/addamenity');?>" class="btn btn-primary mb-3"><i class="bi bi-umbrella me-2"></i>Add New Amenity</a>
                                     </div>
 <?php endif; ?>
                                     <div class="col-md-5">

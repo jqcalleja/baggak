@@ -4,7 +4,7 @@ class Staff extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-
+        
         // Set default time zone used by date functions
         date_default_timezone_set('Asia/Manila');
 
@@ -13,10 +13,9 @@ class Staff extends CI_Controller
         $this->db->query("SET time_zone='+08:00'");
         $this->db->close();
 
-        $this->load->library(array('session', 'form_validation', 'pagination'));
+        $this->load->library(array('session', 'form_validation', 'pagination', 'email'));
         $this->load->helper('url');
     }
-
     public function index()
     {
         if ($this->session->userdata('userid') != null) {
@@ -98,19 +97,12 @@ class Staff extends CI_Controller
         redirect(base_url('Staff'));
     }
 
-    public function register()
-    {
-        $data = array(
-            'title' => "Baggak Resort Resarvation System - Registration"
-        );
-
-        $this->load->view('include/header_staff', $data);
-        $this->load->view('staff/staff_registration', $data);
-        $this->load->view('include/footer');
-    }
-
     public function myprofile()
     {
+        if($this->session->userdata('userid') == null) {
+            redirect(base_url('Staff'));
+        }
+
         $this->load->model('Staff_model', 'staff');
         $data = array(
             'title' => "Baggak Resort Resarvation System - My Profile",
@@ -131,6 +123,10 @@ class Staff extends CI_Controller
 
     public function users()
     {
+        if($this->session->userdata('userid') == null) {
+            redirect(base_url('Staff'));
+        }
+
         $this->load->model('Staff_model', 'staff');
         // Check if the user is searching
         $search = '';
@@ -449,11 +445,34 @@ class Staff extends CI_Controller
                 'email' => $this->input->post('email'),
                 'status' => $this->input->post('status'),
                 'role' => $this->input->post('role'),
-                'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT)
+                'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
+                // token is used for account activation
+                'token' => md5(random_bytes(32))
             );
             //$this->dd($data);
             $this->staff->add_user($data);
 
+            /*
+            // Set email configuration
+            $config = array(
+                'protocol' => 'smtp',
+                'smtp_host' => 'smtp.gmail.com',
+                'smtp_port' => 465,
+                'smtp_user' => $this->config['email'],
+                'smtp_pass' => $this->config['password'],
+                'mailtype' => 'html',
+                'charset' => 'iso-8859-1'
+            );
+            $this->email->initialize($config);
+            // Send email to the user for account activation
+            $this->email->from($this->config['email'], 'Baggak Sonz Hotel and Restaurant');
+            $this->email->to($this->input->post('email'));
+            $this->email->subject('Account Activation');
+            $message = '<p>Hi ' . $this->input->post('firstname') . ',</p>' . '<p>Your account has been created. Please click the link below to activate your account.</p>' . '<p><a href="' . base_url('Staff/activate/' . $data['token']) . '">Activate Account</a></p>' . '<p>Thank you.</p><br><p>Baggak Sonz Hotel and Restaurant</p>';
+            $this->email->message($message);
+            $this->email->send();
+            */
+            
             // Add entry to audit log
             $this->load->model('AuditLog_model', 'audit');
             $data = array(

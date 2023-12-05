@@ -9,8 +9,7 @@
     z-index: -1
 }
 
-#mv,
-.about {
+#mv, .about, .foods, .rooms, .amenities {
     width: 90%;
 }
 

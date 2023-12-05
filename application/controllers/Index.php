@@ -63,4 +63,64 @@ class Index extends CI_Controller
         $this->load->view('about', $data);
         $this->load->view('include/footer');
     }
+
+    public function foods()
+    {
+        $this->load->database();
+        $this->load->model('Foods_model', 'foods');
+        $data = array(
+            'page'   => 'home',
+            'title' => "Baggak Resort Reservation System - Foods and Beverages",
+            'foods' => $this->foods->get_foods_index()
+        );
+
+        $this->load->view('include/header', $data);
+        $this->load->view('foodsinfo', $data);
+        $this->load->view('include/footer');
+        $this->db->close();
+    }
+
+    public function amenities()
+    {
+        $this->load->database();
+        $this->load->model('Amenities_model', 'amenities');
+        $data = array(
+            'page'   => 'home',
+            'title' => "Baggak Resort Reservation System - Amenities",
+            'amenities' => $this->amenities->get_amenities_index()
+        );
+
+        $this->load->view('include/header', $data);
+        $this->load->view('amenitiesinfo', $data);
+        $this->load->view('include/footer');
+        $this->db->close();
+    }
+
+    public function rooms()
+    {
+        $this->load->database();
+        $this->load->model('Rooms_model', 'rooms');
+        $data = array(
+            'page'   => 'home',
+            'title' => "Baggak Resort Reservation System - Rooms",
+            'rooms' => $this->rooms->get_rooms_index()
+        );
+
+        $this->load->view('include/header', $data);
+        $this->load->view('roomsinfo', $data);
+        $this->load->view('include/footer');
+        $this->db->close();
+    }
+
+    public function viewimage($folder, $image)
+    {
+        $image_file = base_url('assets/images/') . $folder . '/' . $image;
+        $data = array(
+            'title' => 'Baggak Resort Reservation System - View Amenity Image',
+            'image' => $image_file,
+            'alt' => $image
+        );
+        $this->load->view('image_viewer', $data);
+        $this->load->view('include/footer');
+    }
 }

@@ -13,6 +13,9 @@
                 <li class="nav-item border rounded-2 me-1 shadow-sm">
                     <a class="nav-link" href="<?= base_url('Index/amenities'); ?>"><span class="material-icons me-2">beach_access</span>Amenities</a>
                 </li>
+                <li class="nav-item border rounded-2 me-1 shadow-sm">
+                    <a class="nav-link" href="<?= base_url('Index/rooms'); ?>"><span class="material-icons me-2">meeting_room</span>Rooms</a>
+                </li>
             </ul>
         </div>
         <div class="col-md-10 border-top border-5 rounded-5 border-dark mx-auto mt-2 mb-5"></div>

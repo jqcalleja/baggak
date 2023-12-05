@@ -87,9 +87,10 @@ class Amenities extends CI_Controller
     public function insert_amenity(){
         if($this->session->userdata('userid') != null){
             $this->load->model('Amenities_model', 'amenities');
-            $this->form_validation->set_rules('name', 'Amenity Name', 'required|trim');
+            $this->form_validation->set_rules('name', 'Amenity Name', 'required|is_unique[amenities.name]|trim');
             $this->form_validation->set_rules('price', 'Amenity Price', 'required|numeric|trim');
             if ($this->form_validation->run() == FALSE) {
+                $this->session->set_flashdata('error', validation_errors());
                 $data = array(
                     'title' => 'Baggak Resort Reservation System - Add New Amenity'
                 );
@@ -165,9 +166,10 @@ class Amenities extends CI_Controller
             $this->form_validation->set_rules('name', 'Amenity Name', 'required|trim');
             $this->form_validation->set_rules('price', 'Amenity Price', 'required|numeric|trim');
             if ($this->form_validation->run() == FALSE) {
+                $this->session->set_flashdata('error', validation_errors());
                 $data = array(
                     'title' => 'Baggak Resort Reservation System - Edit Amenity',
-                    'amenity' => $this->amenities->get_amenity($this->uri->segment(3))
+                    'amenity' => $this->amenities->get_amenity($this->input->post('id'))
                 );
                 $this->load->view('include/header_staff', $data);
                 $this->load->view('include/nav_staff');
@@ -176,6 +178,16 @@ class Amenities extends CI_Controller
             } else {
                 $filename = $this->upload_image();
                 $id = $this->input->post('id');
+                if($this->input->post('oldimage') != null && $filename == null){
+                    $filename = $this->input->post('oldimage');
+                }
+                if($filename != null){
+                    // Delete old image
+                    if($this->input->post('oldimage') != null){
+                        unlink('./assets/images/amenities/' . $this->input->post('oldimage'));
+                        unlink('./assets/images/amenities/thumbs/' . $this->input->post('oldimage'));
+                    }
+                }
                 $data = array(
                     'name' => $this->input->post('name'),
                     'description' => $this->input->post('description'),
@@ -207,9 +219,11 @@ class Amenities extends CI_Controller
     public function viewimage($image)
     {
         if($this->session->userdata('userid') != null){
+            $image_file = base_url('./assets/images/amenities/') . $image;
             $data = array(
                 'title' => 'Baggak Resort Reservation System - View Amenity Image',
-                'image' => $image
+                'image' => $image_file,
+                'alt' => 'Amenity Image'
             );
             $this->load->view('image_viewer', $data);
             $this->load->view('include/footer');
@@ -241,10 +255,10 @@ class Amenities extends CI_Controller
             $config['height'] = 200;
             $this->image_lib->initialize($config);
             $this->image_lib->resize();
+            return $this->upload->data('file_name');
         }else{
             return null;
         }
-        return $this->upload->data('file_name');
     }
 
     public function dd($data)

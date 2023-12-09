@@ -37,20 +37,19 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php $count = 0;
-                                        foreach ($users as $user) : ?>
-                                            <tr>
-                                                <th scope="row">
-                                                    <?= ++$count; ?>
-                                                </th>
-                                                <td>
-                                                    <?php if ($user['middlename'] != null) : ?>
-                                                        <?= $user['lastname'] . ', ' . $user['firstname'] . ' ' . substr($user['middlename'], 0, 1) . '. '; ?>
-                                                    <?php else : ?>
-                                                        <?= $user['lastname'] . ', ' . $user['firstname']; ?>
-                                                    <?php endif; ?>
-                                                </td>
-                                                <td class="text-center">
+<?php $count = 0; foreach ($users as $user) : ?>
+                                        <tr>
+                                            <th scope="row">
+                                                <?= ++$count; ?>
+                                            </th>
+                                            <td>
+<?php if ($user['middlename'] != null) : ?>
+                    <?= $user['lastname'] . ', ' . $user['firstname'] . ' ' . substr($user['middlename'], 0, 1) . '. '; ?>
+<?php else : ?>
+<?= $user['lastname'] . ', ' . $user['firstname']; ?>
+<?php endif; ?>
+                                            </td>
+                                            <td class="text-center">
                                                     <?php if ($user['role'] == 1) : ?>
                                                         Admin
                                                     <?php else : ?>

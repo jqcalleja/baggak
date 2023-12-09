@@ -9,7 +9,7 @@
                             <div class="collapse ms-4" id="transaction-collapse">
                                 <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 fs-6">
                                     <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">Sales and Amenities</a></li>
-                                    <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">Reservations</a></li>
+                                    <li><a href="<?= base_url('Reservations'); ?>" class="link-dark d-inline-flex text-decoration-none rounded">Reservations</a></li>
                                     <li><a href="#" class="link-dark d-inline-flex text-decoration-none rounded">Confirm Payments</a></li>
                                 </ul>
                             </div>

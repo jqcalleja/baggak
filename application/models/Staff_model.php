@@ -59,6 +59,20 @@ class Staff_model extends CI_Model
         $this->db->insert('staff', $data);
     }
 
+    public function get_user_by_token($token)
+    {
+        $this->load->database();
+        $this->db->where('token', $token);
+        return $this->db->get('staff')->row_array();
+    }
+
+    public function activate_user($id)
+    {
+        $this->load->database();
+        $this->db->where('staffid', $id);
+        $this->db->update('staff', array('status' => 1));
+    }
+
     public function dd($data)
     {
         echo "<pre>";

@@ -65,6 +65,7 @@ class Amenities extends CI_Controller
             $this->load->view('staff/amenities', $data);
             $this->load->view('include/footer');
         }else{
+            $this->session->set_flashdata('warning', 'You have been logged out. Please login again.');
             redirect('Staff');
         }
     }
@@ -80,6 +81,7 @@ class Amenities extends CI_Controller
             $this->load->view('staff/add_amenities', $data);
             $this->load->view('include/footer');
         }else{
+            $this->session->set_flashdata('warning', 'You have been logged out. Please login again.');
             redirect('Staff');
         }
     }
@@ -124,6 +126,7 @@ class Amenities extends CI_Controller
                 redirect('Amenities');
             }
         }else{
+            $this->session->set_flashdata('warning', 'You have been logged out. Please login again.');
             redirect('Staff');
         }
     }
@@ -140,6 +143,7 @@ class Amenities extends CI_Controller
             $this->load->view('staff/view_amenity', $data);
             $this->load->view('include/footer');
         }else{
+            $this->session->set_flashdata('warning', 'You have been logged out. Please login again.');
             redirect('Staff');
         }
     }
@@ -156,6 +160,7 @@ class Amenities extends CI_Controller
             $this->load->view('staff/edit_amenities', $data);
             $this->load->view('include/footer');
         }else{
+            $this->session->set_flashdata('warning', 'You have been logged out. Please login again.');
             redirect('Staff');
         }
     }
@@ -212,6 +217,7 @@ class Amenities extends CI_Controller
                 redirect('Amenities');
             }
         }else{
+            $this->session->set_flashdata('warning', 'You have been logged out. Please login again.');
             redirect('Staff');
         }
     }
@@ -228,6 +234,7 @@ class Amenities extends CI_Controller
             $this->load->view('image_viewer', $data);
             $this->load->view('include/footer');
         }else{
+            $this->session->set_flashdata('warning', 'You have been logged out. Please login again.');
             redirect('Staff');
         }
     }

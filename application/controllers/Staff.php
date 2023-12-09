@@ -443,36 +443,39 @@ class Staff extends CI_Controller
                 'address' => $this->input->post('address'),
                 'phone' => $this->input->post('phone'),
                 'email' => $this->input->post('email'),
-                'status' => $this->input->post('status'),
                 'role' => $this->input->post('role'),
                 'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
                 // token is used for account activation
                 'token' => md5(random_bytes(32))
             );
-            //$this->dd($data);
-            $this->staff->add_user($data);
 
-            /*
             // Set email configuration
             $config = array(
                 'protocol' => 'smtp',
                 'smtp_host' => 'smtp.gmail.com',
                 'smtp_port' => 465,
-                'smtp_user' => $this->config['email'],
-                'smtp_pass' => $this->config['password'],
+                'smtp_user' => $this->config->item('email'),
+                'smtp_pass' => $this->config->item('password'),
                 'mailtype' => 'html',
-                'charset' => 'iso-8859-1'
+                'newline' => "\r\n",
+                'wordwrap' => TRUE,
+                'smtp_crypto' => 'ssl',
             );
             $this->email->initialize($config);
             // Send email to the user for account activation
-            $this->email->from($this->config['email'], 'Baggak Sonz Hotel and Restaurant');
+            $this->email->from($this->config->item('email'), 'Baggak Sonz Hotel and Restaurant');
             $this->email->to($this->input->post('email'));
             $this->email->subject('Account Activation');
-            $message = '<p>Hi ' . $this->input->post('firstname') . ',</p>' . '<p>Your account has been created. Please click the link below to activate your account.</p>' . '<p><a href="' . base_url('Staff/activate/' . $data['token']) . '">Activate Account</a></p>' . '<p>Thank you.</p><br><p>Baggak Sonz Hotel and Restaurant</p>';
+            $message = '<p>Hi ' . $this->input->post('firstname') . ',</p><p>Your account has been created. Please click the link below to activate your account.</p><p><a href="' . base_url('Staff/activate/' . $data['token']) . '">Activate Account</a></p><p>Thank you.</p><br><p>Baggak Sonz Hotel and Restaurant</p>';
             $this->email->message($message);
-            $this->email->send();
-            */
-            
+            if(!$this->email->send()){
+                echo $this->email->print_debugger();
+                die();
+            }
+
+            //$this->dd($data);
+            $this->staff->add_user($data);
+
             // Add entry to audit log
             $this->load->model('AuditLog_model', 'audit');
             $data = array(
@@ -484,6 +487,20 @@ class Staff extends CI_Controller
 
             $this->session->set_flashdata('success', 'User added successfully');
             redirect(base_url('Staff/adduser'));
+        }
+    }
+
+    public function activate($token)
+    {
+        $this->load->model('Staff_model', 'staff');
+        $user = $this->staff->get_user_by_token($token);
+        if ($user) {
+            $this->staff->activate_user($user['staffid']);
+            $this->session->set_flashdata('success', 'Account activated successfully');
+            redirect(base_url('Staff/login'));
+        } else {
+            $this->session->set_flashdata('error', 'Invalid activation link');
+            redirect(base_url('Staff/login'));
         }
     }
 

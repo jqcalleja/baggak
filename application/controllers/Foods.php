@@ -206,7 +206,7 @@ class Foods extends CI_Controller
                 );
                 $this->load->model('AuditLog_model', 'logs');
                 $this->logs->add_log($log);
-                redirect('foods');
+                redirect('Foods');
             }
         }else{
             redirect('Staff');
